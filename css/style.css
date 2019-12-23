@@ -1,0 +1,108 @@
+#chart-area svg {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#year-slider {
+  width: 100%;
+  margin-left: 3em;
+}
+
+#play-button {
+  width: 11em;
+}
+
+#playicon,
+#pauseicon {
+  padding-right: 1ex;
+}
+
+.container {
+  padding-top: 5em;
+}
+
+.nowrap {
+  display: flex;
+  align-items: baseline;
+}
+
+
+
+.sub-menu {
+  top: 50%;
+  margin-top: 2.2ex;
+  background: #ffffff;
+  padding: 1em;
+  border: 1px solid silver;
+  visibility: hidden; /* hides sub-menu */
+  opacity: 0;
+  position: absolute;
+  width: auto;
+  transform: translateY(-2em);
+  z-index: -1;
+
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+
+
+nav ul,
+nav ul li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav > ul > li {
+  display: inline-block;
+  border-left: solid 1px #aaa;
+  white-space: nowrap;
+}
+nav > ul > li:first-child {
+  border-left: none;
+}
+
+.noUi-connect {
+  background: #007efa;
+}
+.tooltip-value {
+  color: #f79508;
+}
+.tooltip-continent {
+  text-transform: capitalize;
+}
+.tooltip-countryname {
+  color: #f79508;
+  font-size: larger;
+  font-weight: bold;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
+}
+
+.continentDiv {
+  margin-right: 1em;
+}
+.continentDiv h3 {
+  margin: 0;
+}
+.continentDiv label {
+  padding-left: 1ex;
+}
+.continentDiv fieldset {
+  margin: 8px;
+  margin-left: 0;
+  border: 1px solid silver;
+  padding: 8px;
+  padding-top: 0;
+  border-radius: 4px;
+  display: initial;
+}
+.continentDiv legend {
+  border: none;
+  width: auto;
+  padding: 2px;
+  margin: 0;
+  font-size: small;
+}
