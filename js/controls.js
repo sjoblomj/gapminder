@@ -38,10 +38,10 @@ const controls = {
     return "checkbox" + country.replace(/[\W]+/g, "_");
   },
 
-  addContinentsToDropdown: function(continentsAndCountries) {
+  addContinentsToDropdown: function(data) {
     const listDiv = document.getElementById('countriesAndContinentsList');
 
-    continentsAndCountries
+    this.getAllContinentsAndCountries(data)
       .sort()
       .forEach(d => {
         const continentName = d.continent.charAt(0).toUpperCase() + d.continent.slice(1);
@@ -160,8 +160,6 @@ const controls = {
     this.setUpdateSpeed();
     this.setElementAttributes();
 
-    const continentsAndCountries = this.getAllContinentsAndCountries(data);
-
     const minIncome     = this.getMinInData(data, country => country.income);
     const maxIncome     = this.getMaxInData(data, country => country.income);
     const minPopulation = this.getMinInData(data, country => country.population);
@@ -177,11 +175,16 @@ const controls = {
 
     d3graph.setupScales(lowerIncome, maxIncome, maxLifeExp, minPopulation, maxPopulation);
     d3graph.addAxis(xAxisTicks);
-    d3graph.addLegend(continentsAndCountries);
-    this.addContinentsToDropdown(continentsAndCountries);
+    d3graph.addLegend(this.getAllContinentsAndCountries(data));
     this.addSlider(d3graph.getFirstYear(), d3graph.getLastYear());
+
+    this.broadcastSetupComplete();
   },
 
+  broadcastSetupComplete: function() {
+    // Broadcast that setup of the controls is finished, to whomever might care
+    window.postMessage("finished gapminder controls setup", "*");
+  },
 
   cleanData: function(data) {
     return data.map(year => {
@@ -208,6 +211,13 @@ const controls = {
     menu.style.visibility = show ? "visible" : "hidden";
     menu.style.opacity    = show ? 1 : 0;
     menu.style.zIndex     = show ? 1 : -1;
+  },
+
+  getWidthOfGraph: function() {
+    const countriesAndContinentsList = document.getElementById('countriesAndContinentsList');
+    const styles = window.getComputedStyle(countriesAndContinentsList);
+
+    return Math.max(countriesAndContinentsList.offsetWidth, d3graph.totalWidth);
   },
 
   setElementAttributes: function() {

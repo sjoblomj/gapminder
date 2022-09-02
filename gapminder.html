@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gapminder Clone</title>
+
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-free-5.15.4-web/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/nouislider_15.6.1.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="container" id="controlContainer">
+      <div id="year-slider"></div>
+      <ul class="graphcontrollernavbar">
+        <li class="graphcontroller">
+          <button id="play-button" class="btn btn-primary"><i class="fas fa-play" id="playicon"></i><i class="fas fa-pause" id="pauseicon"></i><span id="playpausetext">Pause</span></button>
+        </li>
+
+        <li class="graphcontroller" id="speed-and-countries">
+          Speed:
+          <select id="speed-select" class="form-control">
+            <option value="400">0.25x</option>
+            <option value="200">0.5x</option>
+            <option value="150">0.75x</option>
+            <option selected value="100">1x</option>
+            <option value="75">1.25x</option>
+            <option value="50">1.5x</option>
+            <option value="25">1.75x</option>
+          </select>
+
+          <button id="countries-button" class="btn btn-primary">Countries and continents <i class="fas fa-caret-down"></i></button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <nav>
+        <ul>
+          <li>
+            <div id="countriesAndContinentsList" class="sub-menu"></div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div id="chart-area"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/libs/d3.min_7.6.1.js"></script>
+    <script src="js/libs/nouislider_15.6.1.js"></script>
+    <script src="js/libs/wNumb.min_1.2.0.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/size-broadcaster.js"></script>
+
+  </body>
+</html>

@@ -2,12 +2,12 @@ const d3graph = {
   dataFilePath: "data/data.json",
 
   marginLeft: 60,
-  marginRight: 10,
+  marginRight: 0,
   marginTop: 10,
   marginBottom: 80,
 
-  totalWidth: 800,
-  totalHeight: 600,
+  totalWidth: 640,
+  totalHeight: 640,
   width:  0,
   height: 0,
 
@@ -32,28 +32,21 @@ const d3graph = {
 
     this.g = d3.select("#chart-area")
       .append("svg")
+        .attr("id", "chart-svg")
         .attr("width", this.totalWidth)
         .attr("height", this.totalHeight)
       .append("g")
         .attr("transform", "translate(" + this.marginLeft + "," + this.marginTop + ")");
 
-    // Tooltip
-    this.tooltip = d3.tip()
-      .attr("class", "d3-tip")
-      .html(d => {
-        var text = "";
-        text += "<h4 class='tooltip-countryname'>" + d.country + "</h4>";
-        text += "<strong>Continent:</strong> <span class='tooltip-value tooltip-continent'>" + d.continent + "</span><br />";
-        text += "<strong>Life Expectancy:</strong> <span class='tooltip-value'>" + d3.format(".2f")(d.life_exp) + "</span><br />";
-        text += "<strong>GDP Per Capita:</strong> <span class='tooltip-value'>" + d3.format("$,.0f")(d.income) + "</span><br />";
-        text += "<strong>Population:</strong> <span class='tooltip-value'>" + d3.format(",.0f")(d.population) + "</span><br />";
-        return text;
-      });
-    this.g.call(this.tooltip);
+    this.tooltip = d3.select("#chart-area")
+      .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
 
     // X-label
     this.g.append("text")
-      .attr("class", "x axis-label")
+      .attr("class", "chart-text x axis-label")
       .attr("x", this.width / 2)
       .attr("y", this.totalHeight - 35)
       .attr("font-size", "20px")
@@ -62,7 +55,7 @@ const d3graph = {
 
     // Y-label
     this.g.append("text")
-      .attr("class", "y axis-label")
+      .attr("class", "chart-text y axis-label")
       .attr("x", - (this.height / 2))
       .attr("y", -40)
       .attr("font-size", "20px")
@@ -72,13 +65,45 @@ const d3graph = {
 
     // Year-label
     this.yearLabel = this.g.append("text")
-      .attr("x", this.width - 40)
+      .attr("class", "chart-text")
+      .attr("x", this.width - 50)
       .attr("y", this.height - 10)
       .attr("font-size", "40px")
       .attr("opacity", "0.5")
       .attr("text-anchor", "middle")
   },
 
+  showTooltip: function(d) {
+    this.tooltip
+      .transition()
+        .duration(200)
+        .style("opacity", 1);
+
+    this.tooltip
+      .html("<h4 class='tooltip-countryname'>" + d.country + "</h4>" +
+        "<strong>Continent:</strong> <span class='tooltip-value tooltip-continent'>" + d.continent + "</span><br />" +
+        "<strong>Life Expectancy:</strong> <span class='tooltip-value'>" + d3.format(".2f")(d.life_exp) + "</span><br />" +
+        "<strong>GDP Per Capita:</strong> <span class='tooltip-value'>" + d3.format("$,.0f")(d.income) + "</span><br />" +
+        "<strong>Population:</strong> <span class='tooltip-value'>" + d3.format(",.0f")(d.population) + "</span><br />"
+      );
+
+
+    const tt = document.querySelector('.tooltip');
+    const padding = window.getComputedStyle(tt, null).getPropertyValue('padding-bottom').slice(0, -2) / 2;
+    const left = this.marginLeft + xScale(d.income)   - (this.tooltip.style('width').slice(0, -2) / 2);
+    const top  = this.marginTop  + yScale(d.life_exp) - Math.sqrt(areaScale(d.population) / Math.PI) + padding;
+
+    this.tooltip
+      .style("left", left + "px")
+      .style("top", top + "px");
+  },
+
+  hideTooltip: function() {
+    this.tooltip
+      .transition()
+        .duration(200)
+        .style("opacity", 0);
+  },
 
   getOpacityForCountry: function(country) {
     const checkbox = document.getElementById(controls.getCheckboxNameForCountry(country.country));
@@ -112,8 +137,8 @@ const d3graph = {
       .append("circle")
         .attr("class", "enter")
         .attr("fill", d => this.continentColor(d.continent))
-        .on("mouseover", this.tooltip.show)
-        .on("mouseout", this.tooltip.hide)
+        .on("mouseover", (event, d) => this.showTooltip(d))
+        .on("mouseout",  (event, d) => this.hideTooltip())
         .merge(circles)
         .attr("opacity", d => this.getOpacityForCountry(d))
         .transition(t)
@@ -139,6 +164,7 @@ const d3graph = {
           .attr("fill", this.continentColor(continent));
 
         legendRow.append("text")
+          .attr("class", "chart-text")
           .attr("x", -10)
           .attr("y", 10)
           .attr("text-anchor", "end")
@@ -188,6 +214,8 @@ const d3graph = {
       this.lastYear  = this.firstYear + data.length - 1;
 
       this.cleanedData = controls.cleanData(data);
+      controls.addContinentsToDropdown(this.cleanedData);
+      this.totalWidth = controls.getWidthOfGraph();
 
       this.setupGraph();
       controls.setup(this.cleanedData);
