@@ -46,14 +46,14 @@ const controls = {
       .forEach(d => {
         const continentName = d.continent.charAt(0).toUpperCase() + d.continent.slice(1);
 
-        const continentDiv = document.createElement('div');
+        const continentDiv = document.createElement("div");
         continentDiv.setAttribute("class", "continentDiv");
-        const header = document.createElement('h3');
+        const header = document.createElement("h3");
         header.appendChild(document.createTextNode(continentName));
 
         const createButtonFunction = (action, tooltip, buttonClass) => {
-          const button = document.createElement('button');
-          const icon = document.createElement('i');
+          const button = document.createElement("button");
+          const icon = document.createElement("i");
           icon.setAttribute("class", buttonClass);
 
           button.onclick = () => this.changeCountrySelection(continentName, action);
@@ -63,11 +63,11 @@ const controls = {
           return button;
         };
 
-        const allButton    = createButtonFunction("all", "Select every country in " + continentName, "fas fa-check-square");
-        const noneButton   = createButtonFunction("none", "Deselect every country in " + continentName, "far fa-square");
-        const invertButton = createButtonFunction("invert", "Invert current selection of countries in " + continentName, "far fa-share-square");
-        const groupBox     = document.createElement('fieldset');
-        const legend       = document.createElement('legend');
+        const allButton    = createButtonFunction("all", "Select every country in " + continentName, "icon icon-check-square");
+        const noneButton   = createButtonFunction("none", "Deselect every country in " + continentName, "icon icon-square");
+        const invertButton = createButtonFunction("invert", "Invert current selection of countries in " + continentName, "icon icon-share-square");
+        const groupBox     = document.createElement("fieldset");
+        const legend       = document.createElement("legend");
         legend.appendChild(document.createTextNode("Selection"));
         groupBox.appendChild(legend);
         groupBox.appendChild(allButton);
@@ -228,7 +228,7 @@ const controls = {
 
         if (btn.innerText == "Pause") {
 
-          document.getElementById('playicon') .setAttribute('style', 'display: inline-block;');
+          document.getElementById('playicon') .setAttribute('style', 'display: inline;');
           document.getElementById('pauseicon').setAttribute('style', 'display: none;');
           btn.innerText = "Play";
           clearInterval(this.interval);
@@ -236,7 +236,7 @@ const controls = {
         } else {
 
           document.getElementById('playicon') .setAttribute('style', 'display: none;');
-          document.getElementById('pauseicon').setAttribute('style', 'display: inline-block;');
+          document.getElementById('pauseicon').setAttribute('style', 'display: inline;');
           btn.innerText = "Pause";
           this.interval = setInterval(this.stepToNextYear, this.updateInterval);
         }

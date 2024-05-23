@@ -21,6 +21,36 @@
   font-family: "Computer Modern";
 }
 
+.icon-play {
+  background-image: url("icons/play.svg");
+}
+.icon-pause {
+  background-image: url("icons/pause.svg");
+}
+.icon-caret-down {
+  background-image: url("icons/caret-down.svg");
+}
+.icon-square {
+  background-image: url("icons/square.svg");
+}
+.icon-share-square {
+  background-image: url("icons/share-square.svg");
+}
+.icon-check-square {
+  background-image: url("icons/check-square.svg");
+}
+.icon-to-left {
+  margin-right: 1em;
+}
+.icon-to-right {
+  margin-left: 1em;
+}
+.icon {
+  background-repeat: no-repeat;
+  background-size: 1em;
+  padding-right: 1em;
+}
+
 #chart-area svg {
   margin-left: auto;
   margin-right: auto;
@@ -34,11 +64,6 @@
 
 #play-button {
   white-space: nowrap;
-}
-
-#playicon,
-#pauseicon {
-  padding-right: 1ex;
 }
 
 #speed-and-countries {

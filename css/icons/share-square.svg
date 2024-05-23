@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 576 576"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="share-square.svg"
+   width="576"
+   height="576"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.1490485"
+     inkscape:cx="288.06442"
+     inkscape:cy="231.06074"
+     inkscape:window-width="1920"
+     inkscape:window-height="1023"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+  <path
+     d="M 561.938,190.06 417.94,46.092 C 387.926,16.078 336,37.097 336,80.032 v 57.198 c -42.45,1.88 -84.03,6.55 -120.76,17.99 -35.17,10.95 -63.07,27.58 -82.91,49.42 C 108.22,231.2 96,264.6 96,303.94 c 0,61.697 33.178,112.455 84.87,144.76 37.546,23.508 85.248,-12.651 71.02,-55.74 C 236.375,345.841 234.734,322.037 336,314.2 V 368 c 0,42.993 51.968,63.913 81.94,33.94 l 143.998,-144 c 18.75,-18.74 18.75,-49.14 0,-67.88 z M 384,368 V 264.16 C 255.309,266.082 166.492,287.35 206.31,408 176.79,389.55 144,356.08 144,303.94 144,194.606 273.14,184.993 384,184.09 V 80 l 144,144 z m 24.74,84.493 a 82.658,82.658 0 0 0 20.974,-9.303 C 437.69,438.238 448,444.016 448,453.404 V 496 c 0,26.51 -21.49,48 -48,48 H 48 C 21.49,544 0,522.51 0,496 V 144 C 0,117.49 21.49,96 48,96 h 132 c 6.627,0 12,5.373 12,12 v 4.486 c 0,4.917 -2.987,9.369 -7.569,11.152 -13.702,5.331 -26.396,11.537 -38.05,18.585 A 12.138,12.138 0 0 1 140.101,144 H 54 a 6,6 0 0 0 -6,6 v 340 a 6,6 0 0 0 6,6 h 340 a 6,6 0 0 0 6,-6 v -25.966 c 0,-5.37 3.579,-10.059 8.74,-11.541 z"
+     id="path1" />
+</svg>
