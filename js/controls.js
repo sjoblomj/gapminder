@@ -75,9 +75,9 @@ const controls = {
         groupBox.appendChild(invertButton);
 
 
-
         const continentList = document.createElement('ul');
         continentList.id = "list" + continentName;
+        continentList.className = "country-list";
 
         continentDiv.appendChild(header);
         continentDiv.appendChild(groupBox);
@@ -178,12 +178,33 @@ const controls = {
     d3graph.addLegend(this.getAllContinentsAndCountries(data));
     this.addSlider(d3graph.getFirstYear(), d3graph.getLastYear());
 
+    this.setCountryPopupOffset();
+
     this.broadcastSetupComplete();
   },
 
   broadcastSetupComplete: function() {
     // Broadcast that setup of the controls is finished, to whomever might care
     window.postMessage("finished gapminder controls setup", "*");
+  },
+
+  setCountryPopupOffset: function() {
+    const popup  = document.getElementById("countriesAndContinentsList");
+    const button = document.getElementById("countries-button");
+
+    if (button.offsetLeft + button.offsetWidth < popup.offsetWidth) {
+      popup.style.right = 0;
+    } else {
+      popup.style.left = (button.offsetLeft + button.offsetWidth - popup.offsetWidth) + "px";
+    }
+  },
+
+  getControlBarHeightOffset: function() {
+    const slider = document.getElementById("year-slider");
+    const sliderStyles = window.getComputedStyle(slider);
+    const sliderHeight = slider.offsetHeight + parseFloat(sliderStyles['marginTop']) + parseFloat(sliderStyles['marginBottom']);
+    const controlBarHeight = document.getElementsByClassName("graphcontrollernavbar")[0].offsetHeight;
+    return sliderHeight + controlBarHeight;
   },
 
   cleanData: function(data) {
@@ -210,7 +231,7 @@ const controls = {
 
     menu.style.visibility = show ? "visible" : "hidden";
     menu.style.opacity    = show ? 1 : 0;
-    menu.style.zIndex     = show ? 1 : -1;
+    menu.style.zIndex     = show ? 2 : -1;
   },
 
   getWidthOfGraph: function() {

@@ -10,7 +10,6 @@
 
   <body>
     <div class="container" id="controlContainer">
-      <div id="year-slider"></div>
       <ul class="graphcontrollernavbar">
         <li class="graphcontroller">
           <button id="play-button"><i class="icon icon-play icon-to-left" id="playicon"></i><i class="icon icon-pause icon-to-left" id="pauseicon"></i><span id="playpausetext">Pause</span></button>
@@ -31,22 +30,13 @@
           <button id="countries-button">Countries and continents <i class="icon icon-caret-down icon-to-right"></i></button>
         </li>
       </ul>
+      <div id="countriesAndContinentsList" class="sub-menu"></div>
+
+      <div id="year-slider"></div>
     </div>
 
-    <div class="container">
-      <nav>
-        <ul>
-          <li>
-            <div id="countriesAndContinentsList" class="sub-menu"></div>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div id="chart-area"></div>
-        </div>
-      </div>
+    <div class="container" id="mainContainer">
+      <div id="chart-area"></div>
     </div>
 
     <script src="js/libs/d3.min_7.9.0.js"></script>
@@ -56,6 +46,5 @@
     <script src="js/main.js"></script>
     <script src="js/controls.js"></script>
     <script src="js/size-broadcaster.js"></script>
-
   </body>
 </html>

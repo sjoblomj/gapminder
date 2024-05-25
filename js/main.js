@@ -2,8 +2,8 @@ const d3graph = {
   dataFilePath: "data/data.json",
 
   marginLeft: 60,
-  marginRight: 0,
-  marginTop: 10,
+  marginRight: 100,
+  marginTop: 30,
   marginBottom: 80,
 
   totalWidth: 640,
@@ -88,14 +88,14 @@ const d3graph = {
       );
 
 
-    const tt = document.querySelector('.tooltip');
-    const padding = window.getComputedStyle(tt, null).getPropertyValue('padding-bottom').slice(0, -2) / 2;
+    const controlBarHeightOffset = controls.getControlBarHeightOffset();
+    const padding = document.querySelector('.tooltip').offsetHeight;
     const left = this.marginLeft + xScale(d.income)   - (this.tooltip.style('width').slice(0, -2) / 2);
-    const top  = this.marginTop  + yScale(d.life_exp) - Math.sqrt(areaScale(d.population) / Math.PI) + padding;
+    const top  = this.marginTop  + yScale(d.life_exp) - Math.sqrt(areaScale(d.population) / Math.PI) - padding + controlBarHeightOffset;
 
     this.tooltip
       .style("left", left + "px")
-      .style("top", top + "px");
+      .style("top",  top  + "px");
   },
 
   hideTooltip: function() {
